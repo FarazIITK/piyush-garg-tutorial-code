@@ -48,6 +48,10 @@ app.get("/api/users", (req, res) => {
 // Create user
 app.post("/api/user", (req, res) => {
   const { name } = req.body;
+
+  if (!name) {
+    return res.status(400).json("Name cannot be empty");
+  }
   const users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
 
   const newUser = {
@@ -61,7 +65,9 @@ app.post("/api/user", (req, res) => {
 
   fs.writeFileSync(usersFilePath, updatedFileData);
 
-  return res.json(`Successfully created user with id equal to ${users.length}`);
+  return res
+    .status(201)
+    .json(`Successfully created user with id equal to ${users.length}`);
 });
 
 // Update user
@@ -77,7 +83,7 @@ app
       return res.json(result);
     }
 
-    return res.json(`User with id equal to ${id} doesn't exist`);
+    return res.status(404).json(`User with id equal to ${id} doesn't exist`);
   })
   .patch((req, res) => {
     const { id } = req.params;
@@ -101,7 +107,7 @@ app
       return res.json(`Successfully updated user with id equal to ${id}`);
     }
 
-    return res.json(`User with id equal to ${id} doesn't exist`);
+    return res.status(404).json(`User with id equal to ${id} doesn't exist`);
   })
   .delete((req, res) => {
     const { id } = req.params;
@@ -115,7 +121,7 @@ app
       return res.json(`Successfully deleted user with id equal to ${id}`);
     }
 
-    return res.json(`User with id equal to ${id} doesn't exist`);
+    return res.status(404).json(`User with id equal to ${id} doesn't exist`);
   });
 
 // Delete User
