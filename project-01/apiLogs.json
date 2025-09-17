@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2025-09-17T10:01:44.305Z",
+    "method": "PATCH",
+    "url": "/api/user/2"
+  },
+  {
+    "date": "2025-09-17T10:02:00.814Z",
+    "method": "PATCH",
+    "url": "/api/user/2"
+  },
+  {
+    "date": "2025-09-17T10:02:07.512Z",
+    "method": "GET",
+    "url": "/api/users"
+  }
+]
