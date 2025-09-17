@@ -9,6 +9,11 @@ const app = express();
 
 app.use(express.json());
 
+// Always append "X" to custom headers
+// Ex: "X-Powered-By"
+// 1. Access rrequest headers --> req.headers()
+// 2. Add header to response --> res.setHeader("key", value);
+
 // Health API
 app.get("/api/health", (req, res) => {
   res.json("All good! Do not worry");
